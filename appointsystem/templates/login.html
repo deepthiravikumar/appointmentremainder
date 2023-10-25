@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Appointment System</title>
+  </head>
+  <style>
+    body {
+      font-family:Georgia, 'Times New Roman', Times, serif;
+      margin: 10px;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color:lightslategray;
+      background-image: url("https://www.calendar.com/wp-content/uploads/2018/03/traveling-as-a-business-owner-1024x546.jpg.webp");
+    }
+
+    .login-container {
+      background-color: #d9d6d6;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 400px;
+    }
+
+    h2 {
+      margin-bottom: 1.5rem;
+      color: #333;
+      text-align: center;
+    }
+
+    label,
+    input {
+      display: block;
+      margin-bottom: 1rem;
+      width: 375px;
+      padding:10px;
+      font-size: 20px;
+    }
+
+    button {
+      background-color: #524cc3;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 20px;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+
+    .error-message {
+      color: #ff4d4d;
+      margin-top: 1rem;
+    }
+  </style>
+  <body>
+    <div class="login-container">
+      <h2>Login to Your Account</h2>
+      <form id="login-form">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required />
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required />
+
+        <button type="submit">LOGIN</button>
+       <p> <a href="{% url 'signup' %}">Dont have an account ? Sign up<p>
+      </form>
+      <p id="error-message" class="error-message"></p>
+    </div>
+
+    <script>
+      const loginForm = document.getElementById("login-form");
+      const errorMessage = document.getElementById("error-message");
+
+      loginForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const username = loginForm.username.value;
+        const password = loginForm.password.value;
+
+        // Replace this with your actual authentication logic
+        if (username === "yourUsername" && password === "yourPassword") {
+          window.location.href = "dashboard.html"; // Redirect to dashboard or home page
+        } else {
+          errorMessage.textContent = "Invalid username or password.";
+        }
+      });
+    </script>
+  </body>
+</html>

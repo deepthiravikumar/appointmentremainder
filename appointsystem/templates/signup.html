@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register - Appointment System</title>
+  </head>
+  <style>
+    body {
+      font-family:Georgia, 'Times New Roman', Times, serif;
+      margin: 10px;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: rgb(202, 199, 199);
+      font-size: 20px;
+      background-image:url("https://www.getillustrations.com/packs/animals-and-monsters-illustrations/scenes/_1x/tools%20_%20reminder,%20calendar,%20date,%20month,%20anniversary,%20appointment_md.png");
+    }
+
+    .register-container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 400px;
+    }
+
+    h2 {
+      margin-bottom: 1.5rem;
+      color: #333;
+      text-align: center;
+    }
+
+    label,
+    input {
+      display: block;
+      margin-bottom: 1rem;
+      width: 375px;
+      padding:10px;
+    }
+
+    button {
+      background-color: #249a16;
+      color: #fff;
+      border: none;
+      padding: 15px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 15px;
+    }
+
+    .error-message {
+      color: #ff4d4d;
+      margin-top: 1rem;
+    }
+  </style>
+  <body>
+    <div class="register-container">
+      <h2>Create a New Account</h2>
+      <form id="register-form">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required />
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required />
+
+        <label for="confirm-password">Confirm Password:</label>
+        <input
+          type="password"
+          id="confirm-password"
+          name="confirm-password"
+          required
+        />
+
+        <button type="submit">Register</button>
+      </form>
+      <p id="error-message" class="error-message"></p>
+    </div>
+
+    <script>
+      const registerForm = document.getElementById("register-form");
+      const errorMessage = document.getElementById("error-message");
+
+      registerForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const username = registerForm.username.value;
+        const password = registerForm.password.value;
+        const confirmPassword = registerForm["confirm-password"].value;
+
+        if (password !== confirmPassword) {
+          errorMessage.textContent = "Passwords don't match.";
+        } else {
+          // Replace this with your actual registration logic
+          // You can store the new user information in a database
+
+          // For demonstration, let's just display a success message
+          errorMessage.style.color = "green";
+          errorMessage.textContent = "Registration successful!";
+
+          // You might want to redirect the user to a login page after successful registration
+          setTimeout(() => {
+            window.location.href = "login.html";
+          }, 2000);
+        }
+      });
+    </script>
+  </body>
+</html>

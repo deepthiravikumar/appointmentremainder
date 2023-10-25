@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Appointment Reminder System</title>
+  </head>
+  <style>
+    body {
+      font-family: Georgia, "Times New Roman", Times, serif;
+      margin: 0;    
+      background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)),
+        url("https://static.vecteezy.com/system/resources/previews/005/273/322/original/business-operations-planning-and-scheduling-concept-with-businesswoman-writing-appointment-on-calendar-with-pencil-and-time-with-clock-cartoon-design-241-vector.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      font-size: 25px;
+
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo a {
+      color: #fff;
+      font-weight: bold;
+      font-size: 1.2rem;
+      text-decoration: none;
+    }
+
+    .menu {
+      list-style: none;
+      display: flex;
+    }
+
+    .menu li {
+      margin-right: 1rem;
+    }
+
+    .menu a {
+      text-decoration: none;
+      color: #fff;
+    }
+
+    .hero {
+      background-color:darkgoldenrod;
+      color: white;
+      font-size: 30px;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .content {
+      padding: 3rem;
+      text-align: center;
+      font-size: 25px;
+      color: rgb(255, 255, 255);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    label,
+    input,
+    select {
+      margin-bottom: 1rem;
+      padding: 10px;
+    }
+
+    button {
+      background-color: royalblue;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #333;
+      color: #fff;
+    }
+  </style>
+  <body>
+    <header>
+      <nav>
+        <div class="logo">
+          <a href="#">Appointment System</a>
+        </div>
+        <ul class="menu">
+          <li><a href="#about">About Us</a></li>
+          <li><a href="{% url 'login' %}">Login</a></li>
+          <li><a href="#book">Book Appointment</a></li>
+        </ul>
+      </nav>
+    </header>
+      <section class="hero">
+        <h1>Welcome to our Appointment System</h1>
+        <p>Never miss another appointment!</p>
+        <p>We are here to remind you!</p>
+      </section>
+    <section id="about" class="content">
+      <h2>About Us</h2>
+      <p>
+        
+        <i>
+          Welcome to our Appointment Booking System ! We are dedicated to
+          providing you with a convenient and efficient way to manage your
+          appointments. Our user-friendly interface allows you to easily
+          schedule appointments for various services. With our system, you'll
+          never miss an important appointment again.
+        </i>
+      </p>
+      <p>
+        <i>
+          We are committed to delivering top-notch service and ensuring that
+          your scheduling experience is smooth and hassle-free. Feel free to
+          reach out to us if you have any questions or feedback. We value your
+          time and strive to make your appointment booking process a breeze.
+        </i>
+      </p>
+    </section>
+
+    <section id="book" class="content">
+      <h2>Book Appointment</h2>
+      <form id="appointment-form">
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required />
+
+        <label for="time">Time:</label>
+        <input type="time" id="time" name="time" required />
+
+        <label for="service">Service:</label>
+        <select id="service" name="service" required>
+          <option value="service1">Service 1</option>
+          <option value="service2">Service 2</option>
+          <option value="service3">Service 3</option>
+        </select>
+
+        <button type="submit">Book Appointment</button>
+      </form>
+      <p id="success-message" class="success-message"></p>
+    </section>
+
+    <footer>
+      <p>&copy; 2023 Appointment System</p>
+    </footer>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const appointmentForm = document.getElementById("appointment-form");
+        const successMessage = document.getElementById("success-message");
+
+        appointmentForm.addEventListener("submit", (event) => {
+          event.preventDefault();
+
+          const formData = new FormData(appointmentForm);
+          const appointmentDate = new Date(
+            formData.get("date") + " " + formData.get("time")
+          );
+
+          const currentTime = new Date();
+          const timeUntilAppointment = appointmentDate - currentTime;
+
+          if (timeUntilAppointment > 0) {
+            setTimeout(() => {
+              alert("Your appointment is coming up soon!");
+            }, timeUntilAppointment);
+          } else {
+            alert("Invalid appointment time. Please select a future time.");
+          }
+
+          // Simulate a successful booking (replace with actual logic)
+          setTimeout(() => {
+            successMessage.textContent = "Appointment successfully booked!";
+          }, 10); // Show the success message after a brief delay
+        });
+      });
+    </script>
+  </body>
+</html>
